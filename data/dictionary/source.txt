@@ -1,0 +1,2 @@
+EDICT, ENAMDICT and KANJIDIC dictionaries are the property of the Electronic Dictionary Research and Development Group, and are used in conformance with the Group's licence.
+https://www.edrdg.org/jmdict/edict.html 
