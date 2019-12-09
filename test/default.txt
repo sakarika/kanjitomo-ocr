@@ -1,6 +1,20 @@
-# TODO describe format
+# Default test definitions
 #
-# These tests are included in GIT.
-# If you have local tests that are not meant to be committed, create a file "local tests.txt"
+# Each line starts with a filename (located in "default images" folder),
+# followed by tab-delimited list of tests. 
+#
+# Each test contains comma-delimited list of parameters.
+#
+# Area tests contain parameters:
+# - x,y			 = upper-left corner of target character or column 
+# - width,height = character or column dimensions
+#
+# OCR tests contain parameters:
+# - x,y			= target character coordinates (anywhere within character's borders)
+# - character   = target character
+#
+# These tests and target images are committed to GitHub. 
+# If you have tests that are not meant to be committed, define your tests at "local.txt" file 
+# and add images to "local images" directory 
 
 1.png	63,18,29,151	63,18,29,28	20,115,22,19	75,30,今	30,30,帰
