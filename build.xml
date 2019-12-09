@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_jar" name="Create runnable jar">
+    
+    <property name="target" location="deploy"/>
+    
+    <target name="create_jar">
+        
+        <jar destfile="${target}/KanjiTomoOCR.jar">
+            <manifest>
+                <attribute name="Main-Class" value="net.kanjitomo.util.CLI"/>
+                <attribute name="Class-Path" value=". lib/imgscalr-lib-4.2/imgscalr-lib-4.2-javadoc.jar lib/imgscalr-lib-4.2/imgscalr-lib-4.2-sources.jar lib/imgscalr-lib-4.2/imgscalr-lib-4.2.jar"/>
+            </manifest>
+            <fileset dir="bin"/>
+        	<fileset dir="data/cache"/>
+			<zipgroupfileset dir="lib" includes="**/*.jar"/>
+        </jar>
+		
+    	<javadoc sourcepath="src" destdir="javadoc" encoding="UTF-8" 
+    		packagenames="net.kanjitomo" additionalparam="-Xdoclint:none">
+    	    <classpath>
+    	        <fileset dir="lib">
+    	            <include name="**/*.jar"/>
+    	        </fileset>
+    	    </classpath>
+    	</javadoc>
+    	
+	</target>
+	
+</project>
