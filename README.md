@@ -20,7 +20,7 @@ This library is intented to be used with interactive programs where user can poi
 	<li>Create <a href="javadoc/net/kanjitomo/KanjiTomo.html">KanjiTomo</a> class instance</li>
 	<li>Load data structures with <a href="javadoc/net/kanjitomo/KanjiTomo.html#loadData()">loadData</a> method. This needs to be done only at startup.</li>
 	<li>Set the target image with <a href="javadoc/net/kanjitomo/KanjiTomo.html#setTargetImage(java.awt.image.BufferedImage)">setTargetImage</a> method. This can be whole page or screenshot around target word. Screenshots around cursor can be taken with Java's <a href="https://docs.oracle.com/javase/7/docs/api/java/awt/Robot.html">Robot</a> class.</li>
-	<li>Start OCR with <a href="javadoc/net/kanjitomo/KanjiTomo.html#runOCR(java.awt.Point)">runOCR</a> method. Point argument determines the first character to be scanned in target image's coordinates.</li>
+	<li>Start OCR with <a href="javadoc/net/kanjitomo/KanjiTomo.html#runOCR(java.awt.Point)">runOCR</a> method. Point argument determines the first character to be scanned in target image's coordinates and should correspond to mouse cursor location.</li>
 	<li>Results are returned as <a href="javadoc/net/kanjitomo/OCRResults.html">OCRResults</a> object. <a href="javadoc/net/kanjitomo/OCRResults.html#bestMatchingCharacters">bestMatchingCharacters</a> field contains a list of identified characters and <a href="javadoc/net/kanjitomo/OCRResults.html#words">words</a> list contains results of a dictionary search from these characters.</li>
 </ul>
 
