@@ -1,0 +1,6 @@
+# TODO describe format
+#
+# These tests are included in GIT.
+# If you have local tests that are not meant to be committed, create a file "local tests.txt"
+
+1.png	63,18,29,151	63,18,29,28	20,115,22,19	75,30,今	30,30,帰
