@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html>
+
+<head>
+	<title>How KanjiTomo works</title>
+	<meta name="description" content="KanjiTomo is a OCR program for identifying Japanese text from images. It is optimized for accurate kanji recognition."/>
+	<meta name="keywords" content="kanji,KanjiTomo,japanese,OCR"/> 
+	<meta charset='utf-8'>
+	<style>
+		div.content { width: 1050px }
+		table.fixed { table-layout:fixed; }
+	</style>
+</head>
+
+<body bgcolor="white">
+
+<div class="content">
+
+<h1>How KanjiTomo works?</h1>
+
+This page contains a description of KanjiTomo's OCR algorithm.
+
+<p>
+<br>
+
+<table class="fixed" style="text-align:center;">
+
+	<col width="350px" />
+    <col width="350px" />
+    <col width="350px" />
+
+	<tr>
+		<td>The original image</td>
+		<td>Image is sharpened</td>
+		<td>Gray pixels are removed</td>
+	</tr>
+	<tr>
+		<td><img src="images/5.1.original.png"/></td>
+		<td><img src="images/5.2.sharpened.png"/></td>
+		<td><img src="images/5.3.binary.png"/></td>
+	</tr>
+	<tr>
+		<td valign="top">Touching pixels are combined into areas</td>
+		<td valign="top">Each area represents a fragment of character</td>
+		<td valign="top">Fragments are grouped into characters</td>
+	</tr>
+	<tr>	
+		<td><img src="images/5.5.touching.png"/></td>
+		<td><img src="images/5.7.areas.png"/></td>
+		<td><img src="images/5.20.combined.png"/></td>
+	</tr>
+
+	<tr>
+		<td>Target character is aligned with reference characters.</td>
+	</tr>
+	
+</table>
+
+<table class="fixed" style="text-align:center;">
+
+	<col width="170px" />
+    <col width="170px" />
+    <col width="170px" />
+    
+	<tr>
+		<td><img src="images/1.1.ocr.original.png"/></td>
+		<td><img src="images/1.2.ocr.reference.png"/></td>
+		<td><img src="images/1.3.ocr.png"/></td>
+	</tr>
+	<tr>
+		<td><img src="images/1.4.ocr.original.png"/></td>
+		<td><img src="images/1.5.ocr.reference.png"/></td>
+		<td><img src="images/1.6.ocr.png"/></td>
+	</tr>
+	<tr>
+		<td><img src="images/1.7.ocr.original.png"/></td>
+		<td><img src="images/1.8.ocr.reference.png"/></td>
+		<td><img src="images/1.9.ocr.png"/></td>
+	</tr>
+    
+</table>
+
+Alignments are scored by counting common pixels. Pixels are represented as 32x32 bitmaps and comparisons are done with fast bitwise operations.<br>
+This way all common Japanese characters can be compared against each target character. Various transformations (such as stretching and offset)<br>
+are also done to find best possible alignment.
+
+</div>
+</body>
+</html>
