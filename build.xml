@@ -4,7 +4,6 @@
     <property name="target" location="deploy"/>
     
     <target name="create_jar">
-        
         <jar destfile="${target}/KanjiTomoOCR.jar">
             <manifest>
                 <attribute name="Main-Class" value="net.kanjitomo.util.CLI"/>
@@ -14,16 +13,17 @@
         	<fileset dir="data/cache"/>
 			<zipgroupfileset dir="lib" includes="**/*.jar"/>
         </jar>
-		
-    	<javadoc sourcepath="src" destdir="javadoc" encoding="UTF-8" 
-    		packagenames="net.kanjitomo" additionalparam="-Xdoclint:none -notimestamp">
-    	    <classpath>
-    	        <fileset dir="lib">
-    	            <include name="**/*.jar"/>
-    	        </fileset>
-    	    </classpath>
-    	</javadoc>
-    	
+	</target>
+	
+	<target name="create_javadoc">
+		<javadoc sourcepath="src" destdir="javadoc" encoding="UTF-8" 
+			packagenames="net.kanjitomo" additionalparam="-Xdoclint:none -notimestamp">
+		    <classpath>
+		        <fileset dir="lib">
+		            <include name="**/*.jar"/>
+		        </fileset>
+		    </classpath>
+		</javadoc>
 	</target>
 	
 </project>
