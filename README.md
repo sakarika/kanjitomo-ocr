@@ -2,7 +2,7 @@
 
 <h2>Introduction</h2>
 
-KanjiTomo OCR is a Java library for identifying Japanese characters from images. The algorithm used in this library is custom made, originally used with KanjiTomo program: <a href="https://www.kanjitomo.net/">https://www.kanjitomo.net/</a> Description of the algorithm <a href="how it works/index.html">is here</a>.
+KanjiTomo OCR is a Java library for identifying Japanese characters from images. The algorithm used in this library is custom made, originally used with KanjiTomo program: <a href="https://www.kanjitomo.net/">https://www.kanjitomo.net/</a> Description of the algorithm <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/how it works/">is here</a>.
 <br><br>
 This library is intented to be used with interactive programs where user can point to individual words with a mouse. Batch-processing whole pages is not supported. 
 
@@ -17,11 +17,11 @@ This library is intented to be used with interactive programs where user can poi
 <h2>Usage</h2>
 
 <ul>
-	<li>Create <a href="javadoc/net/kanjitomo/KanjiTomo.html">KanjiTomo</a> class instance</li>
-	<li>Load data structures with <a href="javadoc/net/kanjitomo/KanjiTomo.html#loadData()">loadData</a> method. This needs to be done only at startup.</li>
-	<li>Set the target image with <a href="javadoc/net/kanjitomo/KanjiTomo.html#setTargetImage(java.awt.image.BufferedImage)">setTargetImage</a> method. This can be whole page or screenshot around target word. Screenshots around cursor can be taken with Java's <a href="https://docs.oracle.com/javase/7/docs/api/java/awt/Robot.html">Robot</a> class.</li>
-	<li>Start OCR with <a href="javadoc/net/kanjitomo/KanjiTomo.html#runOCR(java.awt.Point)">runOCR</a> method. Point argument determines the first character to be scanned in target image's coordinates and should correspond to mouse cursor location.</li>
-	<li>Results are returned as <a href="javadoc/net/kanjitomo/OCRResults.html">OCRResults</a> object. <a href="javadoc/net/kanjitomo/OCRResults.html#bestMatchingCharacters">bestMatchingCharacters</a> field contains a list of identified characters and <a href="javadoc/net/kanjitomo/OCRResults.html#words">words</a> list contains results of a dictionary search from these characters.</li>
+	<li>Create <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/javadoc/net/kanjitomo/KanjiTomo.html">KanjiTomo</a> class instance</li>
+	<li>Load data structures with <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/javadoc/net/kanjitomo/KanjiTomo.html#loadData()">loadData</a> method. This needs to be done only at startup.</li>
+	<li>Set the target image with <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/javadoc/net/kanjitomo/KanjiTomo.html#setTargetImage(java.awt.image.BufferedImage)">setTargetImage</a> method. This can be whole page or screenshot around target word. Screenshots around cursor can be taken with Java's <a href="https://docs.oracle.com/javase/7/docs/api/java/awt/Robot.html">Robot</a> class.</li>
+	<li>Start OCR with <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/javadoc/net/kanjitomo/KanjiTomo.html#runOCR(java.awt.Point)">runOCR</a> method. Point argument determines the first character to be scanned in target image's coordinates and should correspond to mouse cursor location.</li>
+	<li>Results are returned as <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/javadoc/net/kanjitomo/OCRResults.html">OCRResults</a> object. <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/javadoc/net/kanjitomo/OCRResults.html#bestMatchingCharacters">bestMatchingCharacters</a> field contains a list of identified characters and <a href="https://raw.githack.com/sakarika/kanjitomo-ocr/master/javadoc/net/kanjitomo/OCRResults.html#words">words</a> list contains results of a dictionary search from these characters.</li>
 </ul>
 
 <h2>Example</h2>
