@@ -16,7 +16,7 @@
         </jar>
 		
     	<javadoc sourcepath="src" destdir="javadoc" encoding="UTF-8" 
-    		packagenames="net.kanjitomo" additionalparam="-Xdoclint:none">
+    		packagenames="net.kanjitomo" additionalparam="-Xdoclint:none -notimestamp">
     	    <classpath>
     	        <fileset dir="lib">
     	            <include name="**/*.jar"/>
