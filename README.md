@@ -9,7 +9,7 @@ This library is intented to be used with interactive programs where user can poi
 <h2>Installation</h2>
 
 <ul>
-	<li>Include KanjiTomoOCR.jar to your project</li>
+	<li>Include <a href="deploy/KanjiTomoOCR.jar">KanjiTomoOCR.jar</a> to your project</li>
 	<li>Add "--illegal-access=deny" JVM parameter, this is not strictly required but prevents unnecessary warnings on startup</li>
 	<li>"-Xmx1200m" and "-server" JVM parameters are also recommended for performance reasons</li>
 </ul>
