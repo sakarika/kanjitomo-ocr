@@ -3,6 +3,7 @@ package net.kanjitomo.area;
 import java.awt.image.BufferedImage;
 
 import net.kanjitomo.util.ImageUtil;
+import net.kanjitomo.util.Parameters;
 
 /**
  * Creates a binary (black and white) image from grayscale image.
@@ -18,7 +19,7 @@ public class CreateBinaryImage extends AreaStep {
 
 		// TODO instead of static blackThreshold calculate a histogram?
 		BufferedImage bwImage = ImageUtil.makeBlackAndWhite(task.sharpenedImage,
-				par.pixelRGBThreshold); 
+				Parameters.fixedBlackLevelEnabled ? null : par.pixelRGBThreshold); 
 		
 		task.binaryImage = ImageUtil.createMatrixFromImage(bwImage); 
 	}

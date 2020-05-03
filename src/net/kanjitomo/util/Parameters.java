@@ -88,6 +88,15 @@ public class Parameters {
 	public int pixelRGBThreshold = 140;
 	
 	/**
+	 * Fixed black level can be used to manually specify text color
+	 */
+	public static boolean fixedBlackLevelEnabled = false;
+	public static int fixedBlackLevelRed = 0;
+	public static int fixedBlackLevelGreen = 0;
+	public static int fixedBlackLevelBlue = 0;
+	public static int fixedBlackLevelRange = 45;
+	
+	/**
 	 * How many halo layers are generated around reference and target characters.
 	 * If this is increased ReferenceMatrixCacheBuilder must be run again. Most layers are
 	 * one pixel wide, last layer contains all remaining pixels.

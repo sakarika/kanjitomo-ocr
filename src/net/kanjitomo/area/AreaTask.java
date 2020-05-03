@@ -342,10 +342,10 @@ public class AreaTask {
 	 */
 	protected boolean isPixelInverted(int x, int y) {
 		
-		if (par.colorTarget == CharacterColor.AUTOMATIC) {
-			return inverted[x/InvertImage.BLOCK_SIZE][y/InvertImage.BLOCK_SIZE];
-		} else if (par.colorTarget == CharacterColor.BLACK_ON_WHITE) {
+		if (Parameters.fixedBlackLevelEnabled || par.colorTarget == CharacterColor.BLACK_ON_WHITE) {
 			return false;
+		} else if (par.colorTarget == CharacterColor.AUTOMATIC) {
+			return inverted[x/InvertImage.BLOCK_SIZE][y/InvertImage.BLOCK_SIZE];
 		} else {
 			return true;
 		}

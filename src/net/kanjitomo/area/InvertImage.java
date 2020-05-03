@@ -12,6 +12,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import net.kanjitomo.CharacterColor;
 import net.kanjitomo.util.ImageUtil;
+import net.kanjitomo.util.Parameters;
 
 /**
  * Inverts target image colors in regions with black background 
@@ -25,7 +26,9 @@ public class InvertImage extends AreaStep {
 	@Override
 	protected void runImpl() throws Exception {
 		
-		if (par.colorTarget == CharacterColor.AUTOMATIC) {
+		if (Parameters.fixedBlackLevelEnabled || par.colorTarget == CharacterColor.BLACK_ON_WHITE) {
+			// don't invert
+		} else if (par.colorTarget == CharacterColor.AUTOMATIC) {
 			detectBlackOnWhite();
 		} else if (par.colorTarget == CharacterColor.WHITE_ON_BLACK) {
 			invertWholeImage();

@@ -26,15 +26,56 @@ public class ImageUtil {
 	/**
 	 * Returns true if pixel is determined to be black.
 	 * @param rgb
-	 * @param blackThreshold
+	 * @param blackThreshold If null, uses fixedBlackLevel values instead of single threshold
 	 * @return
 	 */
-	public static boolean containsPixel(int rgb, int blackThreshold) {
+	public static boolean containsPixel(int rgb, Integer blackThreshold) {
 		
-		boolean red =   ((rgb & 0x00ff0000) >> 16) < blackThreshold;  
+		if (blackThreshold == null) {
+			return containsPixelFixedBlackLevel(rgb);
+		}
+		
+		boolean red   = ((rgb & 0x00ff0000) >> 16) < blackThreshold;
 		boolean green = ((rgb & 0x0000ff00) >> 8)  < blackThreshold;
-		boolean blue  =  (rgb & 0x000000ff)        < blackThreshold; 
+		boolean blue  =  (rgb & 0x000000ff)        < blackThreshold;
+		
 		return (red && green) || (green && blue) || (red && blue); // 2 of 3		
+	}
+
+	/**
+	 * Returns true if pixel is determined to be black.
+	 * Uses fixed black level specified in Parameters.fixedBlackLevel*
+	 */
+	public static boolean containsPixelFixedBlackLevel(int rgb) {
+		
+		int red   = ((rgb & 0x00ff0000) >> 16);  
+		int green = ((rgb & 0x0000ff00) >> 8);
+		int blue  =  (rgb & 0x000000ff);
+		
+		//System.err.println("red  :"+red+" <-> "+Parameters.fixedBlackLevelRed);
+		//System.err.println("green:"+green+" <-> "+Parameters.fixedBlackLevelGreen);
+		//System.err.println("blue :"+blue+" <-> "+Parameters.fixedBlackLevelBlue);
+		
+		if (red < Parameters.fixedBlackLevelRed - Parameters.fixedBlackLevelRange) {
+			return false;
+		}
+		if (red > Parameters.fixedBlackLevelRed + Parameters.fixedBlackLevelRange) {
+			return false;
+		}
+		if (green < Parameters.fixedBlackLevelGreen - Parameters.fixedBlackLevelRange) {
+			return false;
+		}
+		if (green > Parameters.fixedBlackLevelGreen + Parameters.fixedBlackLevelRange) {
+			return false;
+		}
+		if (blue < Parameters.fixedBlackLevelBlue - Parameters.fixedBlackLevelRange) {
+			return false;
+		}
+		if (blue > Parameters.fixedBlackLevelBlue + Parameters.fixedBlackLevelRange) {
+			return false;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -516,9 +557,10 @@ public class ImageUtil {
 	
 	/**
 	 * Creates image that has only black and white pixels, determined by
-	 * blackThreshold 
+	 * blackThreshold
+	 * @param blackThreshold If null, uses fixedBlackLevel values instead of single threshold
 	 */
-	public static BufferedImage makeBlackAndWhite(BufferedImage image, int blackThreshold) {
+	public static BufferedImage makeBlackAndWhite(BufferedImage image, Integer blackThreshold) {
 		
 		BufferedImage bwImage = ImageUtil.createEmptyCopy(image);
 		
@@ -658,10 +700,33 @@ public class ImageUtil {
 	 */
 	public static BufferedImage sharpenImage(BufferedImage image, Parameters par) {
 		
+		if (Parameters.fixedBlackLevelEnabled) {
+			return ImageUtil.createCopy(image);
+		}
+		
 		BufferedImage sharpened = null;
 		UnsharpMaskFilter filter = new UnsharpMaskFilter(
 				par.unsharpAmount, par.unsharpRadius, par.unsharpThreshold);
 		return filter.filter(image, sharpened);
+	}
+	
+	/**
+	 * Inverts black and white imagea
+	 * @return
+	 */
+	public static BufferedImage invertImage(BufferedImage image) {
+		
+		BufferedImage inverted = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+		for (int y=0 ; y<image.getHeight() ; y++) {
+			for (int x=0 ; x<image.getWidth() ; x++) {
+				if (image.getRGB(x, y) == Color.BLACK.getRGB()) {
+					inverted.setRGB(x, y, Color.WHITE.getRGB());
+				} else {
+					inverted.setRGB(x, y, Color.BLACK.getRGB());
+				}
+			}
+		}	
+		return inverted;
 	}
 	
 	/**
