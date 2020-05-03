@@ -30,14 +30,14 @@ public class OCR {
 		// sizes). these are shared between first two stages and should not be re-generated 
 		Transform transform = new Transform(task);
 		
-		// stage 1, find best alignment, consider only common pixels between target and references
+		// stage 1, find common pixels between target and references with simple alignment
 		OCRAlignCharacters stage1 = new OCRAlignCharacters(task, transform);
-		task.results = stage1.run(null, false, 1, 1, 4, par.ocrKeepResultsLevel1);
+		task.results = stage1.run(null, true, 1, 1, 1, par.ocrKeepResultsStage1);
 		if (debugStages) {debug(task, System.currentTimeMillis()-started, 1);}
 		
-		// stage 2, consider also pixels that are not exact match (halo matrices)
+		// stage 2, find common pixels, consider more transformations per character
 		OCRAlignCharacters stage2 = new OCRAlignCharacters(task, transform);
-		task.results = stage2.run(getCharacters(task.results), true, 2, 2, 5, par.ocrkeepResultsLevel2);
+		task.results = stage2.run(getCharacters(task.results), true, 2, 2, 4, par.ocrkeepResultsStage2);
 		if (debugStages) {debug(task, System.currentTimeMillis()-started, 2);}		
 		
 		// stage 3, align individual components
