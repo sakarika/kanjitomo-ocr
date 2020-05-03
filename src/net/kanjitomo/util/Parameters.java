@@ -146,14 +146,14 @@ public class Parameters {
 	public float ocrBaseScore = 1000f;
 	
 	/**
-	 * Number of best results that are refined and returned
+	 * Number of best results that are returned from OCR stage 1
 	 */
-	public int ocrKeepResultsLevel1 = 50;
+	public int ocrKeepResultsStage1 = 30;
 	
 	/**
-	 * Number of best results that are refined further
+	 * Number of best results that are returned from OCR stage 2
 	 */
-	public int ocrkeepResultsLevel2 = 12;
+	public int ocrkeepResultsStage2 = 10;
 	
 	/**
 	 * Maximum number of target characters that can be returned by
