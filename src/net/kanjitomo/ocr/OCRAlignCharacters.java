@@ -22,6 +22,9 @@ public class OCRAlignCharacters {
 	private int topN;
 	private Character expectedCharacter = null;
 	
+	/** If true, expected character is always included in results */ 
+	private boolean forceExpectedCharacter = false;
+	
 	public OCRAlignCharacters(OCRTask task, Transform transform) {
 
 		this.transform = transform;
@@ -36,9 +39,13 @@ public class OCRAlignCharacters {
 	 * 
 	 * @param characters Limits search to these characters. If null, considers all characters.
 	 * @param refined If true, uses more accurate but slower algorithm
+	 * @param maxTranslate Maximum number of pixels translated (up/down/left/right)
+	 * @param maxStretch Maximum number of pixels image is scaled
+	 * @param maxSteps Maximum number of translate and stretch steps allowed in total 
 	 * @param topN Returns only the best N results 
 	 */
-	public List<OCRResult> run(Set<Character> characters, boolean refined, int topN) throws Exception {
+	public List<OCRResult> run(Set<Character> characters, boolean refined, 
+			int maxTranslate, int maxStretch, int maxSteps, int topN) throws Exception {
 	
 		List<OCRResult> bestResults = null;
 		this.topN = topN;
@@ -53,7 +60,7 @@ public class OCRAlignCharacters {
 		}
 		
 		// generate OCR targets by applying offset and stretch transformations to target bitmap
-		List<TargetMatrix> targets = buildTargets(refined);
+		List<TargetMatrix> targets = transform.run(maxTranslate, maxStretch, maxSteps);
 		
 		// align reference bitmaps with target bitmaps
 		// calculate score for each aligment and keep topN best
@@ -82,7 +89,9 @@ public class OCRAlignCharacters {
 			List<ReferenceMatrix> references, boolean refined) throws Exception {
 		
 		OCRResultPriorityQueue queue = new OCRResultPriorityQueue(topN);
-		queue.setExpectedCharacter(expectedCharacter);
+		if (forceExpectedCharacter) {
+			queue.setExpectedCharacter(expectedCharacter);
+		}
 		
 		// align all target and reference combinations
 		for (ReferenceMatrix reference : references) {
@@ -99,20 +108,6 @@ public class OCRAlignCharacters {
 		return queue.getResults();
 	}	
 
-	/**
-	 * Builds transformed targets from the original target bitmap.
- 	 *
-	 * @param refined If true, generates more targets (applies more transformation steps)
-	 */
-	private List<TargetMatrix> buildTargets(boolean refined) throws Exception {
-		
-		if (!refined) {
-			return transform.run(1, 1, 4);
-		} else {
-			return transform.run(2, 2, 5);
-		}
-	}
-	
 	/**
 	 * Gets fonts that should be used as OCR references.
 	 * 
@@ -207,15 +202,17 @@ public class OCRAlignCharacters {
 			}
 		});
 		
-		OCRResult removedExpectedResult = null;
-		while (results.size() > maxSize) {
-			OCRResult removed = results.remove(results.size()-1);
-			if (removed.getCharacter().equals(expectedCharacter)) {
-				removedExpectedResult = removed;
+		if (forceExpectedCharacter) {
+			OCRResult removedExpectedResult = null;
+			while (results.size() > maxSize) {
+				OCRResult removed = results.remove(results.size()-1);
+				if (removed.getCharacter().equals(expectedCharacter)) {
+					removedExpectedResult = removed;
+				}
 			}
-		}
-		if (removedExpectedResult != null) {
-			results.add(removedExpectedResult);
+			if (removedExpectedResult != null) {
+				results.add(removedExpectedResult);
+			}
 		}
 		
 		return results;
