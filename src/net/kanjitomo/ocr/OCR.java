@@ -30,7 +30,7 @@ public class OCR {
 		// sizes). these are shared between first two stages and should not be re-generated 
 		Transform transform = new Transform(task);
 		
-		// stage 1, find common pixels between target and references with simple alignment
+		// stage 1, find common pixels, consider basic transformations
 		OCRAlignCharacters stage1 = new OCRAlignCharacters(task, transform);
 		task.results = stage1.run(null, true, 1, 1, 1, par.ocrKeepResultsStage1);
 		if (debugStages) {debug(task, System.currentTimeMillis()-started, 1);}
