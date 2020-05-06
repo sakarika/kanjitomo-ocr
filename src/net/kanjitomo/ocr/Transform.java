@@ -42,6 +42,7 @@ public class Transform {
 		// image has already been sharpened once during area detection but resize might bring
 		// back gray edges, so sharpen again
 		image = ImageUtil.sharpenImage(resizedImage, par);
+		
 	}
 	
 	/**
