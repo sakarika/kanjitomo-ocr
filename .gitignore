@@ -1,5 +1,5 @@
 bin/*
-test/test results/*
+src/test/resources/test/test results/*
 **/*local*/*
 **/*local*
 

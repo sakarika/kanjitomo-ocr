@@ -5,6 +5,8 @@ plugins {
 group 'net.kanjitomo.ocr'
 version '1.0'
 
+sourceSets.test.resources.include 'src/main/resources'
+
 repositories {
     mavenCentral()
 }

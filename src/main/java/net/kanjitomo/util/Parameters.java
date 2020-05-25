@@ -28,7 +28,7 @@ public class Parameters {
 	/**
 	 * Directory relative to package root that contains the data files
 	 */
-	public String dataDirName = "data";
+	public String dataDirName = "/data";
 	
 	/**
 	 * Directory inside data dir that contains dictionaries
@@ -363,7 +363,7 @@ public class Parameters {
 	/**
 	 * Directory relative to package root where test set specifications are stored
 	 */
-	public String testDirName = "test";
+	public String testDirName = "/test";
 	
 	/**
 	 * Directory relative to package root where test set specifications are stored

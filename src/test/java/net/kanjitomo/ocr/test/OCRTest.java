@@ -1,4 +1,4 @@
-package net.kanjitomo.test;
+package net.kanjitomo.ocr.test;
 
 import java.awt.Point;
 

@@ -1,6 +1,7 @@
 package net.kanjitomo.util;
 
 import java.io.File;
+import java.net.URL;
 
 public class Util {
 
@@ -8,21 +9,12 @@ public class Util {
      * Finds file reference
     */
     public static File findFile(String fileName) throws Exception {
-    	
-    	// this is needed because location can be relative to class or jar file,
-    	// depending on if the program is launched directly from Eclipse or packaged first
-    	File file;
-    	File projectDir = new File(Util.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile();
-    	file = new File(projectDir.getAbsolutePath()+"/"+fileName);
-    	if (file.exists()) {
-    		return file;
-    	}
-    	file = new File(projectDir.getAbsolutePath()+"/../"+fileName);
-    	if (file.exists()) {
-    		return file;
-    	} else {
-    		throw new Exception("File not found:"+fileName);
-    	}
+		URL fileResource = Util.class.getResource(fileName);
+		if(fileResource == null){
+			throw new Exception("File not found: " + fileName);
+		}
+
+		return new File(fileResource.getFile());
     }
     
     /**
