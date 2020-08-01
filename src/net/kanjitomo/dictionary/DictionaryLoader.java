@@ -41,6 +41,21 @@ public class DictionaryLoader {
 	private DictionaryType type;
 	private List<Word> words;
 	
+	/**
+	 * Loads new dictionaries from data folder
+	 */
+	public static void main(String[] args) {
+		try {
+			DictionaryLoader loader = new DictionaryLoader(JAPANESE_DEFAULT);
+			loader.loadDictionary();
+			loader = new DictionaryLoader(JAPANESE_NAMES);
+			loader.loadDictionary();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	}
+	
 	public DictionaryLoader(DictionaryType type) throws Exception {
 		
 		words = new ArrayList<Word>();

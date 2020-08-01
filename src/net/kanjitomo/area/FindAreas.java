@@ -231,7 +231,7 @@ public class FindAreas extends AreaStep {
 		// this check is only needed for small bubbles that enclose a few characters,
 		// large bubbles are rejected because their pixel/area ratio is too low 
 		
-		if (area.getWidth() < 50 || area.getHeight() < 50) {
+		if (area.getWidth() < 80 || area.getHeight() < 80) {
 			// areas smaller than these are likely to represent single characters
 			return false;
 		}
