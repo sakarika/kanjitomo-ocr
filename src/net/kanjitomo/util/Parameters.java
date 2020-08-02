@@ -88,13 +88,13 @@ public class Parameters {
 	public int pixelRGBThreshold = 140;
 	
 	/**
-	 * Fixed black level can be used to manually specify text color
+	 * Fixed black level can be used to manually specify (pick) text color
 	 */
 	public static boolean fixedBlackLevelEnabled = false;
 	public static int fixedBlackLevelRed = 0;
 	public static int fixedBlackLevelGreen = 0;
 	public static int fixedBlackLevelBlue = 0;
-	public static int fixedBlackLevelRange = 45;
+	public static int fixedBlackLevelRange = 30;
 	
 	/**
 	 * How many halo layers are generated around reference and target characters.
