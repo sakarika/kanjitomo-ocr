@@ -29,8 +29,7 @@ This library is intented to be used with interactive programs where user can poi
 ```java
 KanjiTomo tomo = new KanjiTomo();
 tomo.loadData();
-File testImageFile = new File("file.png");
-BufferedImage image = ImageIO.read(testImageFile);
+BufferedImage image = ImageIO.read(new File("file.png"));
 tomo.setTargetImage(image);
 OCRResults results = tomo.runOCR(new Point(80,40));
 System.out.println(results);

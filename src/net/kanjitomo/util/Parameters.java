@@ -94,7 +94,7 @@ public class Parameters {
 	public static int fixedBlackLevelRed = 0;
 	public static int fixedBlackLevelGreen = 0;
 	public static int fixedBlackLevelBlue = 0;
-	public static int fixedBlackLevelRange = 30;
+	public static int fixedBlackLevelRange = 50;
 	
 	/**
 	 * How many halo layers are generated around reference and target characters.
