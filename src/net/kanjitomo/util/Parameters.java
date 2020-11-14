@@ -21,7 +21,7 @@ public class Parameters {
 		if (par == null) {
 			par = new Parameters();
 		}
-		
+		 
 		return par;
 	}
 	

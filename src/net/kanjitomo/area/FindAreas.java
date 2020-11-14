@@ -177,7 +177,7 @@ public class FindAreas extends AreaStep {
 		
 		// TODO find worst case ratio for valid characters			
 		float ratio = 1.0f*pixels.size() / (height * width);
-		if (area.getSize() > 300 && ratio < 0.11f) {
+		if (area.getSize() > 300 && ratio < 0.09f) {
 			return;
 		}
 	
